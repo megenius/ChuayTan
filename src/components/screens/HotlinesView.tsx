@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Phone, MapPin, Copy, Check, ShieldCheck, Ambulance, HeartPulse, LifeBuoy, Car, AlertTriangle, ExternalLink } from 'lucide-react';
-import { useHotlines, useUserLocation } from '../../hooks/useEmergencyData';
+import { useHotlines, useUserLocation, LOCATION_UNKNOWN_TH } from '../../hooks/useEmergencyData';
 
 interface HotlinesViewProps {
   onCall: (number: string, title: string, detail: string) => void;
@@ -64,22 +64,26 @@ export const HotlinesView: React.FC<HotlinesViewProps> = ({ onCall }) => {
             <MapPin className="w-4 h-4 text-blue-600" />
             <span>พิกัดระบุตำแหน่งสำหรับแจ้ง 1669:</span>
           </div>
-          <button
-            onClick={handleCopyLocation}
-            className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-bold shadow-2xs transition-colors"
-          >
-            {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-            <span>{copied ? 'คัดลอกพิกัดแล้ว' : 'คัดลอกพิกัด'}</span>
-          </button>
+          {location && (
+            <button
+              onClick={handleCopyLocation}
+              className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-bold shadow-2xs transition-colors"
+            >
+              {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+              <span>{copied ? 'คัดลอกพิกัดแล้ว' : 'คัดลอกพิกัด'}</span>
+            </button>
+          )}
         </div>
 
         <div className="bg-white/95 rounded-xl p-2.5 border border-blue-100 mb-2">
           <div className="text-sm font-mono font-bold text-slate-900">
-            {location?.lat}, {location?.lng}
+            {location ? `${location.lat}, ${location.lng}` : LOCATION_UNKNOWN_TH}
           </div>
-          <div className="text-xs text-slate-600 mt-0.5 line-clamp-1">
-            {location?.address}
-          </div>
+          {location && (
+            <div className="text-xs text-slate-600 mt-0.5 line-clamp-1">
+              {location.address}
+            </div>
+          )}
         </div>
 
         <p className="text-[11px] text-blue-800 leading-normal">

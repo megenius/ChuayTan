@@ -1,6 +1,6 @@
 {
-  "name": "การ์ดช่วยนักท่องเที่ยว - Tourist First Aid & EMS Guide",
+  "name": "ช่วยทัน (ChuayTan)",
   "description": "Mobile-first emergency first-aid and rapid tourist communication assistance with 180° flip display, phonetic speech guides, and instant hotlines for Thailand EMS 1669.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": []
 }
