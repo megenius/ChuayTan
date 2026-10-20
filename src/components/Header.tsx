@@ -42,7 +42,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenInfo, onOpenProfile }) => 
           </h1>
           <div className="flex items-center gap-1.5 text-[11px] font-medium text-slate-700">
             <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" />
-            <span>พร้อมใช้ออฟไลน์</span>
           </div>
         </div>
       </div>

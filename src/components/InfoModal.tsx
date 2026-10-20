@@ -81,13 +81,6 @@ export const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          <div className="bg-emerald-50 rounded-xl p-3 border border-emerald-200 text-emerald-950 text-[11px]">
-            <div className="font-bold flex items-center gap-1 text-emerald-800 mb-1">
-              <CheckCircle2 className="w-3.5 h-3.5" />
-              <span>การทำงานแบบออฟไลน์ (Offline-Ready)</span>
-            </div>
-            ข้อมูลทั้งหมดถูกบันทึกไว้ในแคชของอุปกรณ์แล้ว สามารถเปิดใช้งานได้ทันทีแม้ไม่มีสัญญาณโทรศัพท์หรืออินเทอร์เน็ตบนเกาะและในป่า
-          </div>
         </div>
 
         <button

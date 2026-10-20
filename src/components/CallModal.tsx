@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Phone, PhoneOff, MapPin, Copy, Check, ShieldAlert, Volume2 } from 'lucide-react';
-import { useUserLocation } from '../hooks/useEmergencyData';
+import { useUserLocation, LOCATION_UNKNOWN_TH } from '../hooks/useEmergencyData';
 
 interface CallModalProps {
   isOpen: boolean;
@@ -59,20 +59,24 @@ export const CallModal: React.FC<CallModalProps> = ({
               <MapPin className="w-3.5 h-3.5" />
               <span>ตำแหน่งปัจจุบันของคุณ:</span>
             </div>
-            <button
-              onClick={handleCopyLocation}
-              className="flex items-center gap-1 text-[11px] text-blue-600 hover:text-blue-800 font-bold"
-            >
-              {copied ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
-              <span>{copied ? 'คัดลอกแล้ว' : 'คัดลอกพิกัด'}</span>
-            </button>
+            {location && (
+              <button
+                onClick={handleCopyLocation}
+                className="flex items-center gap-1 text-[11px] text-blue-600 hover:text-blue-800 font-bold"
+              >
+                {copied ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
+                <span>{copied ? 'คัดลอกแล้ว' : 'คัดลอกพิกัด'}</span>
+              </button>
+            )}
           </div>
           <div className="text-xs font-mono text-slate-900 font-semibold truncate">
-            {location?.lat}, {location?.lng}
+            {location ? `${location.lat}, ${location.lng}` : LOCATION_UNKNOWN_TH}
           </div>
-          <div className="text-[11px] text-slate-500 line-clamp-1 mt-0.5">
-            {location?.address}
-          </div>
+          {location && (
+            <div className="text-[11px] text-slate-500 line-clamp-1 mt-0.5">
+              {location.address}
+            </div>
+          )}
         </div>
 
         {/* 1669 Emergency Dispatch Checklist */}

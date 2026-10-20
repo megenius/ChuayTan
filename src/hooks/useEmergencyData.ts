@@ -2,15 +2,10 @@ import { useQuery } from '@tanstack/react-query';
 import { EMERGENCY_CARDS, EMERGENCY_HOTLINES, PHRASEBOOK } from '../data/emergencyData';
 import { EmergencyCategory, Language } from '../types/emergency';
 
-// Simulated API fetches with offline fallback guarantees
 export const useEmergencyCards = () => {
   return useQuery({
     queryKey: ['emergency-cards'],
-    queryFn: async () => {
-      // Simulate rapid offline-first cache resolution
-      await new Promise((r) => setTimeout(r, 60));
-      return EMERGENCY_CARDS;
-    },
+    queryFn: () => EMERGENCY_CARDS,
     staleTime: 1000 * 60 * 60, // 1 hour cached
   });
 };
@@ -18,8 +13,7 @@ export const useEmergencyCards = () => {
 export const useEmergencyCard = (id: EmergencyCategory) => {
   return useQuery({
     queryKey: ['emergency-card', id],
-    queryFn: async () => {
-      await new Promise((r) => setTimeout(r, 40));
+    queryFn: () => {
       const card = EMERGENCY_CARDS.find((c) => c.id === id);
       if (!card) throw new Error('Card not found');
       return card;
@@ -31,10 +25,7 @@ export const useEmergencyCard = (id: EmergencyCategory) => {
 export const useHotlines = () => {
   return useQuery({
     queryKey: ['emergency-hotlines'],
-    queryFn: async () => {
-      await new Promise((r) => setTimeout(r, 50));
-      return EMERGENCY_HOTLINES;
-    },
+    queryFn: () => EMERGENCY_HOTLINES,
     staleTime: 1000 * 60 * 60,
   });
 };
@@ -42,8 +33,7 @@ export const useHotlines = () => {
 export const usePhrasebook = (category?: string) => {
   return useQuery({
     queryKey: ['phrasebook', category],
-    queryFn: async () => {
-      await new Promise((r) => setTimeout(r, 50));
+    queryFn: () => {
       if (!category || category === 'all') {
         return PHRASEBOOK;
       }
@@ -53,17 +43,15 @@ export const usePhrasebook = (category?: string) => {
   });
 };
 
+export const LOCATION_UNKNOWN_TH = 'ไม่ทราบตำแหน่ง ถามคนข้างๆ หรืออ่านป้ายใกล้ตัว';
+
 export const useUserLocation = () => {
   return useQuery({
     queryKey: ['user-location'],
-    queryFn: async () => {
-      return new Promise<{ lat: number; lng: number; address: string }>((resolve) => {
+    queryFn: () =>
+      new Promise<{ lat: number; lng: number; address: string } | null>((resolve) => {
         if (!navigator.geolocation) {
-          resolve({
-            lat: 13.7563,
-            lng: 100.5018,
-            address: 'ถนนข้าวสาร เขตพระนคร กรุงเทพมหานคร (Khao San Road, Bangkok)'
-          });
+          resolve(null);
           return;
         }
 
@@ -76,17 +64,12 @@ export const useUserLocation = () => {
             });
           },
           () => {
-            // Default to tourist hotspot Phuket/Bangkok if geolocation denied
-            resolve({
-              lat: 7.8804,
-              lng: 98.3923,
-              address: 'หาดป่าตอง ภูเก็ต (Patong Beach, Phuket 83150)'
-            });
+            // Permission denied or failed: never show a fabricated location
+            resolve(null);
           },
           { timeout: 3000 }
         );
-      });
-    },
+      }),
     staleTime: 1000 * 60 * 5, // 5 minutes
   });
 };

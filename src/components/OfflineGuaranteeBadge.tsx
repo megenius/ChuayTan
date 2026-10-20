@@ -10,7 +10,7 @@ export const OfflineGuaranteeBadge: React.FC = () => {
           </svg>
         </div>
         <p className="text-[11px] leading-relaxed text-slate-700 font-normal">
-          ข้อมูลชุดนี้ได้รับการรับรองตามมาตรฐานการแพทย์ฉุกเฉิน และบันทึกไว้ในอุปกรณ์พร้อมใช้งานแม้ไม่มีสัญญาณอินเทอร์เน็ต
+          ข้อมูลเบื้องต้น ไม่ใช่คำแนะนำทางการแพทย์ โทร 1669
         </p>
       </div>
     </div>
