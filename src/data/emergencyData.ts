@@ -9,7 +9,7 @@ export const EMERGENCY_CARDS: EmergencyCard[] = [
     tagTh: 'พิษสัตว์อันตรายถึงชีวิต',
     goldenHour: 'นาทีวิกฤต (Golden Hour)',
     severity: 'critical',
-    heroImage: '/assets/aistudio/Image_8_599d5503.jpeg',
+    heroImage: '/assets/aistudio/vinegar_beach_step.jpg',
     heroImageCaption: 'ราดน้ำส้มสายชูต่อเนื่อง 30 วินาทียับยั้งเข็มพิษที่ยังไม่แตก',
     translations: {
       EN: {
