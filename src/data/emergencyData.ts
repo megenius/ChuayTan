@@ -363,7 +363,7 @@ export const EMERGENCY_HOTLINES: EmergencyHotline[] = [
     nameTh: 'ตำรวจท่องเที่ยว (Tourist Police)',
     nameEn: 'Tourist Police Call Center',
     descriptionTh: 'เจ้าหน้าที่สื่อสารภาษาต่างประเทศ (Staff speak foreign languages) ประสานงานเหตุด่วนตลอด 24 ชม.',
-    badge: 'มีล่ามแปลภาษา',
+    badge: 'ตำรวจท่องเที่ยว',
     isPrimary: true,
     category: 'police',
     icon: 'ShieldCheck'

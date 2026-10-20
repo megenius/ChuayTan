@@ -11,8 +11,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenInfo, onOpenProfile }) => 
     if (navigator.share) {
       try {
         await navigator.share({
-          title: 'การ์ดช่วยนักท่องเที่ยว - Tourist First Aid Guide',
-          text: 'คู่มือปฐมพยาบาลฉุกเฉินและสื่อสารนักท่องเที่ยว พร้อมใช้งานออฟไลน์',
+          title: 'ช่วยทัน (ChuayTan)',
+          text: 'คู่มือปฐมพยาบาลฉุกเฉินและสื่อสารนักท่องเที่ยว',
           url: window.location.href,
         });
       } catch (err) {
